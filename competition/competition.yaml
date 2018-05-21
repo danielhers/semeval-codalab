@@ -1,4 +1,4 @@
-title: SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA
+title: "SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA"
 description: Shared task on UCCA parsing in English, German and French.
 image: type_writer2.png
 has_registration: True
@@ -28,7 +28,7 @@ phases:
     3:
         phasenumber: 3
         label: "Post-Evaluation"
-        start_date: 2018-02-01
+        start_date: 2019-02-01
         max_submissions: 999
         scoring_program: scoring_program.zip
         reference_data: test_data.zip
