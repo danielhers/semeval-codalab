@@ -1,5 +1,57 @@
 <H3>Evaluation Criteria</H3>
 
-<p>
-	This is the page that tells you how competition submissions will be evaluated and scored.
-</p>
+<h4 id="submission-conditions.">Submission conditions.</h4>
+<p>Participants in the task will be evaluated in four settings:</p>
+<ol>
+    <li><p>English in-domain setting, using the Wiki corpus.</p></li>
+    <li><p>English out-of-domain setting, using the Wiki corpus as training and development data, and 20K Leagues as
+        test data.</p></li>
+    <li><p>German in-domain setting, using the 20K Leagues corpus.</p></li>
+    <li><p>French setting with no training data, using the 20K Leagues as development and test data.</p></li>
+</ol>
+<p>In order to allow both even ground comparison between systems and using hitherto untried resources, we will hold both
+    an <strong>open</strong> and a <strong>closed</strong> track for submissions in the English and German settings.
+    Closed track submissions will only be allowed to use the gold-standard UCCA annotation distributed for the task in
+    the target language, and will be limited in their use of additional resources. Concretely, the additional data they
+    will be allowed to use will only consist of that used by TUPA, which consists of automatic annotations provided by
+    spaCy <span class="citation" data-cites="spacy2"></span>:<a href="#fn1" class="footnote-ref"
+                                                                id="fnref1"><sup>1</sup></a> POS tags, syntactic
+    dependency relations, and named entity types and spans. In addition, the closed track will allow the use of word
+    embeddings provided by fastText <span class="citation" data-cites="bojanowski2016enriching"></span><a href="#fn2"
+                                                                                                          class="footnote-ref"
+                                                                                                          id="fnref2"><sup>2</sup></a>
+    for all languages.</p>
+<p>Systems in the open track, on the other hand, will be allowed to use any additional resource, such as UCCA annotation
+    in other languages, dictionaries or datasets for other tasks, provided that they make sure not to use any additional
+    gold standard annotation over the same text used in the UCCA corpora.<a href="#fn3" class="footnote-ref"
+                                                                            id="fnref3"><sup>3</sup></a> In both tracks,
+    we will require that submitted systems will not be trained on the development data. Due to the absence of an
+    established pilot study for French, we will only hold an open track for this setting.</p>
+<p>The four settings and two tracks result in a total of 7 competitions, where a team may participate in anywhere
+    between 1 and 7 of them. We will encourage submissions in each track to use their systems to produce results in all
+    settings. In addition, we will encourage closed-track submissions to also submit to the open track.</p>
+<h4 id="scoring.">Scoring.</h4>
+<p>In order to evaluate how similar an output UCCA structure is to a gold UCCA graph, we use <span><em>DAG <span
+        class="math inline">\(F_1\)</span>-score</em></span>. Formally, over two UCCA annotations <span
+        class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> that share their set of leaves
+    (tokens) <span class="math inline">\(W\)</span> and for a node <span class="math inline">\(v\)</span> in <span
+            class="math inline">\(G_1\)</span> or <span class="math inline">\(G_2\)</span>, define its yield <span
+            class="math inline">\(yield(v) \subseteq W\)</span> as its set of leaf descendants. Define a pair of edges
+    <span class="math inline">\((v_1,u_1) \in G_1\)</span> and <span class="math inline">\((v_2,u_2) \in G_2\)</span> to
+    be matching if <span class="math inline">\(yield(u_1) = yield(u_2)\)</span> and they have the same label. Labeled
+    precision and recall are defined by dividing the number of matching edges in <span
+            class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> by <span
+            class="math inline">\(|E_1|\)</span> and <span class="math inline">\(|E_2|\)</span> respectively. <span><em>DAG <span
+            class="math inline">\(F_1\)</span>-score</em></span> is their harmonic mean.</p>
+<section class="footnotes">
+    <hr/>
+    <ol>
+        <li id="fn1"><p><a href="http://spacy.io" class="uri">http://spacy.io</a><a href="#fnref1"
+                                                                                    class="footnote-back">↩</a></p></li>
+        <li id="fn2"><p><a href="http://fasttext.cc" class="uri">http://fasttext.cc</a><a href="#fnref2"
+                                                                                          class="footnote-back">↩</a>
+        </p></li>
+        <li id="fn3"><p>We are not aware of any such annotation, but include this restriction for completeness.<a
+                href="#fnref3" class="footnote-back">↩</a></p></li>
+    </ol>
+</section>

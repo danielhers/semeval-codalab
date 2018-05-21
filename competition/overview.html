@@ -1,5 +1,96 @@
 <H3>Welcome!</H3>
 
-<p>
-	This is an example competition.
+<p>Semantic representation is receiving growing attention in NLP in the past few years, and many proposals for semantic
+    schemes have recently been put forth. Examples include Abstract Meaning Representation <span class="citation"
+                                                                                                 data-cites="banarescu2013abstract"></span>,
+    Broad-coverage Semantic Dependencies <span class="citation" data-cites="oepen2016towards"></span>, Universal
+    Decompositional Semantics <span class="citation" data-cites="white2016universal"></span>, Parallel Meaning Bank
+    <span class="citation" data-cites="abzianidze2017the"></span>, and Universal Conceptual Cognitive Annotation <span
+            class="citation" data-cites="abend2013universal"></span>. These advances in semantic representation, along
+    with corresponding advances in semantic parsing, hold promise benefit essentially all text understanding tasks, and
+    have already demonstrated applicability to summarization <span class="citation"
+                                                                   data-cites="liu2015toward Dohare2017TextSU"></span>,
+    paraphrase detection <span class="citation" data-cites="issa-18"></span>, and semantic evaluation (using UCCA; see
+    below).</p>
+<p>In addition to their potential applicative value, work on semantic parsing poses interesting algorithmic and modeling
+    challenges, which are often different from those tackled in syntactic parsing, including reentrancy (e.g., for
+    sharing arguments across predicates), and the modeling of the interface with lexical semantics. Semantic parsing
+    into such schemes has been much advanced by recent SemEval workshops, including two tasks on Broad-coverage Semantic
+    Dependency Parsing <span class="citation" data-cites="oepen2014semeval oepen2015semeval"></span> and two tasks on
+    AMR parsing <span class="citation" data-cites="may2016semeval may2017semeval"></span>. We expect that a SemEval task
+    on UCCA parsing to have a similar effect. Moreover, given the conceptual similarity between the different semantic
+    representations <span class="citation" data-cites="abend2017state"></span>, it is likely that work on UCCA parsing
+    will directly contribute to the development of other semantic parsing technology. Furthermore, conversion scripts
+    are available between UCCA and the SDP and AMR formats.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>1</sup></a>
+    We will contact teams that participated in past shared tasks on AMR and SDP, encouraging them to participate using
+    similar systems and a conversion-based protocol.</p>
+<p>UCCA is a cross-linguistically applicable semantic representation scheme, building on the established Basic
+    Linguistic Theory typological framework <span class="citation" data-cites="Dixon:10a Dixon:10b Dixon:12"></span>. It
+    has demonstrated applicability to multiple languages, including English, French and German (with pilot annotation
+    projects on Czech, Russian and Hebrew), and stability under translation <span class="citation"
+                                                                                  data-cites="sulem2015conceptual"></span>
+    . It has proven useful for defining semantic evaluation measures for text-to-text generation tasks, including
+    machine translation <span class="citation" data-cites="birch2016hume"></span>, text simplification <span
+            class="citation" data-cites="sulem2018semantic"></span> and grammatical error correction <span
+            class="citation" data-cites="choshen2018reference"></span> (see §<a href="#sec:applications"
+                                                                                data-reference-type="ref"
+                                                                                data-reference="sec:applications">[sec:applications]</a>).
 </p>
+
+<p>UCCA supports rapid annotation by non-experts, assisted by an accessible annotation interface <span class="citation"
+                                                                                                       data-cites="abend2017uccaapp"></span>.
+    The interface is powered by an open-source, flexible web-application for syntactic and semantic phrase-based
+    annotation in general, and for UCCA annotation in particular.<a href="#fn1" class="footnote-ref"
+                                                                    id="fnref1"><sup>1</sup></a></p>
+<h1 id="sec:task_definition">Task Definition</h1>
+<p>UCCA represents the semantics of linguistic utterances as directed acyclic graphs (DAGs), where terminal (childless)
+    nodes correspond to the text tokens, and non-terminal nodes to semantic units that participate in some
+    super-ordinate relation. Edges are labeled, indicating the role of a child in the relation the parent represents.
+    Nodes and edges belong to one of several <em>layers</em>, each corresponding to a “module” of semantic distinctions.
+</p>
+<p>UCCA’s <em>foundational layer</em> covers the predicate-argument structure evoked by predicates of all grammatical
+    categories (verbal, nominal, adjectival and others), the inter-relations between them, and other major linguistic
+    phenomena such as semantic heads and multi-word expressions. It is the only layer for which annotated corpora exist
+    at the moment, and will thus be the target of this shared task. The layer’s basic notion is the <em>Scene</em>,
+    describing a state, action, movement or some other relation that evolves in time. Each Scene contains one main
+    relation (marked as either a Process or a State), as well as one or more Participants. For example, the sentence
+    “After graduation, John moved to Paris” (Figure <a href="#fig:example" data-reference-type="ref"
+                                                       data-reference="fig:example">[fig:example]</a>) contains two
+    Scenes, whose main relations are “graduation” and “moved”. “John” is a Participant in both Scenes, while “Paris”
+    only in the latter. Further categories account for inter-Scene relations and the internal structure of complex
+    arguments and relations (e.g. coordination, multi-word expressions and modification).</p>
+<p>UCCA distinguishes <em>primary</em> edges, corresponding to explicit relations, from <em>remote</em> edges (appear
+    dashed in Figure <a href="#fig:example" data-reference-type="ref" data-reference="fig:example">[fig:example]</a>)
+    that allow for a unit to participate in several super-ordinate relations. Primary edges form a tree in each layer,
+    whereas remote edges enable reentrancy, forming a DAG.</p>
+<p>UCCA graphs may contain <em>implicit</em> units with no correspondent in the text. Figure <a
+        href="#fig:example_implicit" data-reference-type="ref" data-reference="fig:example_implicit">[fig:example_implicit]</a>
+    shows the annotation for the sentence “A similar technique is almost impossible to apply to other crops, such as
+    cotton, soybeans and rice.”. The sentence was used by <span class="citation" data-cites="oepen2015semeval"></span>
+    to compare different semantic dependency schemes. It includes a single Scene, whose main relation is “apply”, a
+    secondary relation “almost impossible”, as well as two complex arguments: “a similar technique” and the coordinated
+    argument “such as cotton, soybeans, and rice.” In addition, the Scene includes an implicit argument, which
+    represents the agent of the “apply” relation.</p>
+<p>While parsing technology is well-established for syntactic parsing, UCCA has several distinct properties that
+    distinguish it from syntactic representations, mostly UCCA’s tendency to abstract away from syntactic detail that do
+    not affect argument structure. For instance, consider the following examples where the concept of a Scene has a
+    different rationale from the syntactic concept of a clause. First, non-verbal predicates in UCCA are represented
+    like verbal ones, such as when they appear in copula clauses or noun phrases. Indeed, in Figure <a
+            href="#fig:example" data-reference-type="ref" data-reference="fig:example">[fig:example]</a>, “graduation”
+    and “moved” are considered separate Scenes, despite appearing in the same clause. Second, in the same example,
+    “John” is marked as a (remote) Participant in the graduation Scene, despite not being explicitly mentioned. Third,
+    consider the possessive construction in “John’s trip home”. While in UCCA “trip” evokes a Scene in which “John” is a
+    Participant, a syntactic scheme would analyze this phrase similarly to “John’s shoes”.</p>
+<p>The differences in the challenges posed by syntactic parsing and UCCA parsing, and more generally semantic parsing,
+    motivate the development of targeted parsing technology to tackle it.</p>
+
+<section class="footnotes">
+    <hr/>
+    <ol>
+        <li id="fn1"><p><a href="https://github.com/huji-nlp/tupa/tree/master/scheme" class="uri">https://github.com/huji-nlp/tupa/tree/master/scheme</a><a
+                href="#fnref1" class="footnote-back">↩</a></p></li>
+        <li id="fn2"><p><a href="https://github.com/omriabnd/UCCA-App"
+                           class="uri">https://github.com/omriabnd/UCCA-App</a><a href="#fnref2"
+                                                                                  class="footnote-back">↩</a></p></li>
+    </ol>
+</section>

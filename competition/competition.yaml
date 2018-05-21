@@ -1,6 +1,6 @@
-title: Sample Competition for SemEval-2017
-description: This is a sample competition that requires a submission of "Hello World!".
-image: semeval-logo.png
+title: SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA
+description: Shared task on UCCA parsing in English, German and French.
+image: type_writer2.png
 has_registration: True
 allow_teams: True
 html:
@@ -12,7 +12,7 @@ phases:
     1:
         phasenumber: 1
         label: "Practice"
-        start_date: 2017-06-01
+        start_date: 2018-06-01
         max_submissions: 999
         scoring_program: scoring_program.zip
         reference_data: dev_data.zip
@@ -20,7 +20,7 @@ phases:
     2:
         phasenumber: 2
         label: "Evaluation"
-        start_date: 2018-01-08
+        start_date: 2019-01-10
         max_submissions: 1
         scoring_program: scoring_program.zip
         reference_data: test_data.zip
@@ -28,7 +28,7 @@ phases:
     3:
         phasenumber: 3
         label: "Post-Evaluation"
-        start_date: 2018-01-30
+        start_date: 2018-02-01
         max_submissions: 999
         scoring_program: scoring_program.zip
         reference_data: test_data.zip
