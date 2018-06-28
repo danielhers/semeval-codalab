@@ -14,6 +14,8 @@ phases:
         label: "Practice"
         start_date: 2018-06-01
         max_submissions: 999
+        is_scoring_only: False
+        enable_detailed_results: True
         scoring_program: scoring_program.zip
         reference_data: dev_data.zip
         leaderboard_management_mode: default
@@ -22,6 +24,8 @@ phases:
         label: "Evaluation"
         start_date: 2019-01-10
         max_submissions: 1
+        is_scoring_only: False
+        enable_detailed_results: True
         scoring_program: scoring_program.zip
         reference_data: test_data.zip
         leaderboard_management_mode: hide_results
@@ -30,6 +34,8 @@ phases:
         label: "Post-Evaluation"
         start_date: 2019-02-01
         max_submissions: 999
+        is_scoring_only: False
+        enable_detailed_results: True
         scoring_program: scoring_program.zip
         reference_data: test_data.zip
         auto_migration: True
@@ -40,8 +46,76 @@ leaderboard:
             label: Results
             rank: 1
     columns:
-        correct:
+        English_in_domain_close_UCCA_averaged_labeled_f1:
             leaderboard: *RESULTS
-            label: correct
-            rank: 1
-            numeric_format: 1
+            label: English_in_domain_close_labeled_f1
+            rank: 2
+            numeric_format: 2
+        English_in_domain_close_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: English_in_domain_close_unlabeled_f1
+            rank: 3
+            numeric_format: 2
+        English_in_domain_open_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: English_in_domain_open_labeled_f1
+            rank: 4
+            numeric_format: 2
+        English_in_domain_open_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: English_in_domain_open_unlabeled_f1
+            rank: 5
+            numeric_format: 2
+        English_out_of_domain_close_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: English_out_of_domain_close_labeled_f1
+            rank: 6
+            numeric_format: 2
+        English_out_of_domain_close_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: English_out_of_domain_close_unlabeled_f1
+            rank: 7
+            numeric_format: 2
+        English_out_of_domain_open_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: English_out_of_domain_open_labeled_f1
+            rank: 8
+            numeric_format: 2
+        English_out_of_domain_open_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: English_out_of_domain_open_unlabeled_f1
+            rank: 9
+            numeric_format: 2
+        German_close_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: German_close_labeled_f1
+            rank: 10
+            numeric_format: 2
+        German_close_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: German_close_unlabeled_f1
+            rank: 11
+            numeric_format: 2
+        German_open_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: German_open_labeled_f1
+            rank: 12
+            numeric_format: 2
+        German_open_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: German_open_unlabeled_f1
+            rank: 13
+            numeric_format: 2
+        French_open_UCCA_averaged_labeled_f1:
+            leaderboard: *RESULTS
+            label: French_open_labeled_f1
+            rank: 14
+            numeric_format: 2
+        French_open_UCCA_averaged_unlabeled_f1:
+            leaderboard: *RESULTS
+            label: French_open_unlabeled_f1
+            rank: 15
+            numeric_format: 2
+
+
+
