@@ -41,80 +41,137 @@ phases:
         leaderboard_management_mode: default
 leaderboard:
     leaderboards:
-        RESULTS: &RESULTS
-            label: Results
+        English_in_Domain: &EN_IN
+            label: English in Domain
             rank: 1
-    columns:
-        English_in_domain_close_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: English_in_domain_close_labeled_f1
+        English_out_of_Domain: &EN_OUT
+            label: English out of Domain
             rank: 2
-            numeric_format: 2
-        English_in_domain_close_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: English_in_domain_close_unlabeled_f1
+        German: &DE
+            label: German
             rank: 3
-            numeric_format: 2
-        English_in_domain_open_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: English_in_domain_open_labeled_f1
+        French: &FR
+            label: French
             rank: 4
-            numeric_format: 2
+    column_groups:
+        Submitted: &SUBMITTED
+            label: submitted
+        Closed: &CLOSED
+            label: closed
+        Open: &OPEN
+            label: open
+    columns:
+        submitted_English_in_domain:
+            leaderboard: *EN_IN
+            column_group: *SUBMITTED
+            label: submitted
+            rank: 1
+            numeric_format: 0
+        English_in_domain_closed_averaged_labeled_f1:
+            leaderboard: *EN_IN
+            column_group: *CLOSED
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
+        English_in_domain_closed_averaged_unlabeled_f1:
+            leaderboard: *EN_IN
+            column_group: *CLOSED
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
+        English_in_domain_open_averaged_labeled_f1:
+            leaderboard: *EN_IN
+            column_group: *OPEN
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
         English_in_domain_open_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: English_in_domain_open_unlabeled_f1
-            rank: 5
-            numeric_format: 2
-        English_out_of_domain_close_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: English_out_of_domain_close_labeled_f1
-            rank: 6
-            numeric_format: 2
-        English_out_of_domain_close_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: English_out_of_domain_close_unlabeled_f1
-            rank: 7
-            numeric_format: 2
+            leaderboard: *EN_IN
+            column_group: *OPEN
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
+
+        submitted_English_out_of_domain:
+            leaderboard: *EN_OUT
+            column_group: *SUBMITTED
+            label: submitted
+            rank: 1
+            numeric_format: 0
+        English_out_of_domain_closed_averaged_labeled_f1:
+            leaderboard: *EN_OUT
+            column_group: *CLOSED
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
+        English_out_of_domain_closed_averaged_unlabeled_f1:
+            leaderboard: *EN_OUT
+            column_group: *CLOSED
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
         English_out_of_domain_open_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: English_out_of_domain_open_labeled_f1
-            rank: 8
-            numeric_format: 2
+            leaderboard: *EN_OUT
+            column_group: *OPEN
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
         English_out_of_domain_open_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: English_out_of_domain_open_unlabeled_f1
-            rank: 9
-            numeric_format: 2
-        German_close_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: German_close_labeled_f1
-            rank: 10
-            numeric_format: 2
-        German_close_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: German_close_unlabeled_f1
-            rank: 11
-            numeric_format: 2
+            leaderboard: *EN_OUT
+            column_group: *OPEN
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
+
+        submitted_German:
+            leaderboard: *DE
+            column_group: *SUBMITTED
+            label: submitted
+            rank: 1
+            numeric_format: 0
+        German_closed_averaged_labeled_f1:
+            leaderboard: *DE
+            column_group: *CLOSED
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
+        German_closed_averaged_unlabeled_f1:
+            leaderboard: *DE
+            column_group: *CLOSED
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
         German_open_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: German_open_labeled_f1
-            rank: 12
-            numeric_format: 2
+            leaderboard: *DE
+            column_group: *OPEN
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
         German_open_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: German_open_unlabeled_f1
-            rank: 13
-            numeric_format: 2
+            leaderboard: *DE
+            column_group: *OPEN
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
+
+        submitted_French:
+            leaderboard: *FR
+            column_group: *SUBMITTED
+            label: submitted
+            rank: 1
+            numeric_format: 0
         French_open_averaged_labeled_f1:
-            leaderboard: *RESULTS
-            label: French_open_labeled_f1
-            rank: 14
-            numeric_format: 2
+            leaderboard: *FR
+            column_group: *OPEN
+            label: labeled F1
+            rank: 1
+            numeric_format: 3
         French_open_averaged_unlabeled_f1:
-            leaderboard: *RESULTS
-            label: French_open_unlabeled_f1
-            rank: 15
-            numeric_format: 2
+            leaderboard: *FR
+            column_group: *OPEN
+            label: unlabeled F1
+            rank: 2
+            numeric_format: 3
 
 
 
