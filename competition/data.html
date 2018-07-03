@@ -1,461 +1,415 @@
-<html>
-<head>
-    <title>Data</title>
-</head>
-<body>
-<p>
-    This is the data for the competition. It is to be used responsibly:
-    <a href="https://github.com/huji-nlp/ucca-corpora">ucca-corpora</a>
-</p>
-
-<p>Experiments will be carried out in three languages: English, German and French. For English, we will use the
-    Wikipedia UCCA corpus (henceforth <span><em>Wiki</em></span>) and the UCCA <span><em>Twenty Thousand Leagues Under the Sea</em></span>
-    English-French-German parallel corpus (henceforth <span><em>20K Leagues</em></span>), which includes manual UCCA
-    annotation for the entire book on the German side, and UCCA manual annotation for the first five chapters on the
-    French and English sides. The statistics for the corpora are given in the following table.</p>
-
-<table>
-    <caption>Statistics of the <em>Wiki</em> and <em>20K Leagues</em> UCCA corpora. All counts exclude the root node.
-    </caption>
-    <tbody>
-    <tr class="odd">
-        <td style="text-align: left;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;"></td>
-        <td style="text-align: center;">Train</td>
-        <td style="text-align: center;">Dev</td>
-        <td style="text-align: center;">Test</td>
-        <td style="text-align: center;">Test</td>
-        <td style="text-align: center;">Train</td>
-        <td style="text-align: center;">Dev</td>
-        <td style="text-align: center;">Test</td>
-        <td style="text-align: center;">Dev</td>
-        <td style="text-align: center;">Test</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;"># passages</td>
-        <td style="text-align: center;">300</td>
-        <td style="text-align: center;">34</td>
-        <td style="text-align: center;">33</td>
-        <td style="text-align: center;">154</td>
-        <td style="text-align: center;">300</td>
-        <td style="text-align: center;">34</td>
-        <td style="text-align: center;">33</td>
-        <td style="text-align: center;">77</td>
-        <td style="text-align: center;">77</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;"># sentences</td>
-        <td style="text-align: center;">4268</td>
-        <td style="text-align: center;">454</td>
-        <td style="text-align: center;">503</td>
-        <td style="text-align: center;">506</td>
-        <td style="text-align: center;">4519</td>
-        <td style="text-align: center;">740</td>
-        <td style="text-align: center;">745</td>
-        <td style="text-align: center;">259</td>
-        <td style="text-align: center;">288</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;"># tokens</td>
-        <td style="text-align: center;">128,444</td>
-        <td style="text-align: center;">14,676</td>
-        <td style="text-align: center;">15,313</td>
-        <td style="text-align: center;">12,339</td>
-        <td style="text-align: center;">110,053</td>
-        <td style="text-align: center;">13,594</td>
-        <td style="text-align: center;">13,269</td>
-        <td style="text-align: center;">6,490</td>
-        <td style="text-align: center;">6,439</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;"># nodes</td>
-        <td style="text-align: center;">298,993</td>
-        <td style="text-align: center;">33,704</td>
-        <td style="text-align: center;">35,718</td>
-        <td style="text-align: center;">29,315</td>
-        <td style="text-align: center;">257654</td>
-        <td style="text-align: center;">31,440</td>
-        <td style="text-align: center;">30,891</td>
-        <td style="text-align: center;">15,319</td>
-        <td style="text-align: center;">15,133</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;">% terminal</td>
-        <td style="text-align: center;">42.96</td>
-        <td style="text-align: center;">43.54</td>
-        <td style="text-align: center;">42.87</td>
-        <td style="text-align: center;">42.09</td>
-        <td style="text-align: center;">42.71</td>
-        <td style="text-align: center;">43.24</td>
-        <td style="text-align: center;">42.95</td>
-        <td style="text-align: center;">42.37</td>
-        <td style="text-align: center;">42.55</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;">% non-term.</td>
-        <td style="text-align: center;">58.33</td>
-        <td style="text-align: center;">57.60</td>
-        <td style="text-align: center;">58.35</td>
-        <td style="text-align: center;">60.01</td>
-        <td style="text-align: center;">57.93</td>
-        <td style="text-align: center;">57.28</td>
-        <td style="text-align: center;">57.48</td>
-        <td style="text-align: center;">59.55</td>
-        <td style="text-align: center;">59.83</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;">% discont.</td>
-        <td style="text-align: center;">0.54</td>
-        <td style="text-align: center;">0.53</td>
-        <td style="text-align: center;">0.44</td>
-        <td style="text-align: center;">0.81</td>
-        <td style="text-align: center;">1.45</td>
-        <td style="text-align: center;">1.25</td>
-        <td style="text-align: center;">1.13</td>
-        <td style="text-align: center;">0.95</td>
-        <td style="text-align: center;">1.25</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;">% reentrant</td>
-        <td style="text-align: center;">2.38</td>
-        <td style="text-align: center;">1.88</td>
-        <td style="text-align: center;">2.15</td>
-        <td style="text-align: center;">0.89</td>
-        <td style="text-align: center;">1.20</td>
-        <td style="text-align: center;">0.78</td>
-        <td style="text-align: center;">0.96</td>
-        <td style="text-align: center;">1.70</td>
-        <td style="text-align: center;">2.25</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;">% implicit</td>
-        <td style="text-align: center;">0.52</td>
-        <td style="text-align: center;">0.63</td>
-        <td style="text-align: center;">0.37</td>
-        <td style="text-align: center;">1.37</td>
-        <td style="text-align: center;">1.11</td>
-        <td style="text-align: center;">0.91</td>
-        <td style="text-align: center;">0.76</td>
-        <td style="text-align: center;">1.26</td>
-        <td style="text-align: center;">1.56</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;"># edges</td>
-        <td style="text-align: center;">287,914</td>
-        <td style="text-align: center;">32,460</td>
-        <td style="text-align: center;">34,336</td>
-        <td style="text-align: center;">27,749</td>
-        <td style="text-align: center;">244,199</td>
-        <td style="text-align: center;">29,495</td>
-        <td style="text-align: center;">28,833</td>
-        <td style="text-align: center;">14,539</td>
-        <td style="text-align: center;">14,184</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;">% primary</td>
-        <td style="text-align: center;">98.25</td>
-        <td style="text-align: center;">98.75</td>
-        <td style="text-align: center;">98.74</td>
-        <td style="text-align: center;">97.73</td>
-        <td style="text-align: center;">98.51</td>
-        <td style="text-align: center;">99.00</td>
-        <td style="text-align: center;">98.78</td>
-        <td style="text-align: center;">98.12</td>
-        <td style="text-align: center;">97.64</td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;">% remote</td>
-        <td style="text-align: center;">1.75</td>
-        <td style="text-align: center;">1.25</td>
-        <td style="text-align: center;">1.26</td>
-        <td style="text-align: center;">2.27</td>
-        <td style="text-align: center;">1.49</td>
-        <td style="text-align: center;">1.00</td>
-        <td style="text-align: center;">1.22</td>
-        <td style="text-align: center;">1.88</td>
-        <td style="text-align: center;">2.36</td>
-    </tr>
-    <tr class="odd">
-        <td style="text-align: left;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
-    </tr>
-    <tr class="even">
-        <td style="text-align: left;"># children</td>
-        <td style="text-align: center;">1.67</td>
-        <td style="text-align: center;">1.68</td>
-        <td style="text-align: center;">1.66</td>
-        <td style="text-align: center;">1.61</td>
-        <td style="text-align: center;">1.64</td>
-        <td style="text-align: center;">1.64</td>
-        <td style="text-align: center;">1.62</td>
-        <td style="text-align: center;">1.62</td>
-        <td style="text-align: center;">1.60</td>
-    </tr>
-    </tbody>
+<p>UCCA general resource page could be found <a href="%20http:/www.cs.huji.ac.il/~oabend/ucca.html">here</a>.</p>
+<p>Data</p>
+<p>This is the data for the competition. It is to be used responsibly: <a href="https://github.com/huji-nlp/ucca-corpora">ucca-corpora</a></p>
+<p>Experiments will be carried out in three languages: English, German and French. For English, we will use the Wikipedia UCCA corpus (henceforth <span><em>Wiki</em></span>) and the UCCA <span><em>Twenty Thousand Leagues Under the Sea</em></span> English-French-German parallel corpus (henceforth <span><em>20K Leagues</em></span>), which includes manual UCCA annotation for the entire book on the German side, and UCCA manual annotation for the first five chapters on the French and English sides. The statistics for the corpora are given in the following table.</p>
+<table><caption>Statistics of the <em>Wiki</em> and <em>20K Leagues</em> UCCA corpora. All counts exclude the root node.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: center;">Train</td>
+<td style="text-align: center;">Dev</td>
+<td style="text-align: center;">Test</td>
+<td style="text-align: center;">Test</td>
+<td style="text-align: center;">Train</td>
+<td style="text-align: center;">Dev</td>
+<td style="text-align: center;">Test</td>
+<td style="text-align: center;">Dev</td>
+<td style="text-align: center;">Test</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"># passages</td>
+<td style="text-align: center;">300</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">154</td>
+<td style="text-align: center;">300</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">77</td>
+<td style="text-align: center;">77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"># sentences</td>
+<td style="text-align: center;">4268</td>
+<td style="text-align: center;">454</td>
+<td style="text-align: center;">503</td>
+<td style="text-align: center;">506</td>
+<td style="text-align: center;">4519</td>
+<td style="text-align: center;">740</td>
+<td style="text-align: center;">745</td>
+<td style="text-align: center;">259</td>
+<td style="text-align: center;">288</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"># tokens</td>
+<td style="text-align: center;">128,444</td>
+<td style="text-align: center;">14,676</td>
+<td style="text-align: center;">15,313</td>
+<td style="text-align: center;">12,339</td>
+<td style="text-align: center;">110,053</td>
+<td style="text-align: center;">13,594</td>
+<td style="text-align: center;">13,269</td>
+<td style="text-align: center;">6,490</td>
+<td style="text-align: center;">6,439</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"># nodes</td>
+<td style="text-align: center;">298,993</td>
+<td style="text-align: center;">33,704</td>
+<td style="text-align: center;">35,718</td>
+<td style="text-align: center;">29,315</td>
+<td style="text-align: center;">257654</td>
+<td style="text-align: center;">31,440</td>
+<td style="text-align: center;">30,891</td>
+<td style="text-align: center;">15,319</td>
+<td style="text-align: center;">15,133</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">% terminal</td>
+<td style="text-align: center;">42.96</td>
+<td style="text-align: center;">43.54</td>
+<td style="text-align: center;">42.87</td>
+<td style="text-align: center;">42.09</td>
+<td style="text-align: center;">42.71</td>
+<td style="text-align: center;">43.24</td>
+<td style="text-align: center;">42.95</td>
+<td style="text-align: center;">42.37</td>
+<td style="text-align: center;">42.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">% non-term.</td>
+<td style="text-align: center;">58.33</td>
+<td style="text-align: center;">57.60</td>
+<td style="text-align: center;">58.35</td>
+<td style="text-align: center;">60.01</td>
+<td style="text-align: center;">57.93</td>
+<td style="text-align: center;">57.28</td>
+<td style="text-align: center;">57.48</td>
+<td style="text-align: center;">59.55</td>
+<td style="text-align: center;">59.83</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">% discont.</td>
+<td style="text-align: center;">0.54</td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">0.44</td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">1.45</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">1.13</td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">1.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">% reentrant</td>
+<td style="text-align: center;">2.38</td>
+<td style="text-align: center;">1.88</td>
+<td style="text-align: center;">2.15</td>
+<td style="text-align: center;">0.89</td>
+<td style="text-align: center;">1.20</td>
+<td style="text-align: center;">0.78</td>
+<td style="text-align: center;">0.96</td>
+<td style="text-align: center;">1.70</td>
+<td style="text-align: center;">2.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">% implicit</td>
+<td style="text-align: center;">0.52</td>
+<td style="text-align: center;">0.63</td>
+<td style="text-align: center;">0.37</td>
+<td style="text-align: center;">1.37</td>
+<td style="text-align: center;">1.11</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">0.76</td>
+<td style="text-align: center;">1.26</td>
+<td style="text-align: center;">1.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"># edges</td>
+<td style="text-align: center;">287,914</td>
+<td style="text-align: center;">32,460</td>
+<td style="text-align: center;">34,336</td>
+<td style="text-align: center;">27,749</td>
+<td style="text-align: center;">244,199</td>
+<td style="text-align: center;">29,495</td>
+<td style="text-align: center;">28,833</td>
+<td style="text-align: center;">14,539</td>
+<td style="text-align: center;">14,184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">% primary</td>
+<td style="text-align: center;">98.25</td>
+<td style="text-align: center;">98.75</td>
+<td style="text-align: center;">98.74</td>
+<td style="text-align: center;">97.73</td>
+<td style="text-align: center;">98.51</td>
+<td style="text-align: center;">99.00</td>
+<td style="text-align: center;">98.78</td>
+<td style="text-align: center;">98.12</td>
+<td style="text-align: center;">97.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">% remote</td>
+<td style="text-align: center;">1.75</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">1.26</td>
+<td style="text-align: center;">2.27</td>
+<td style="text-align: center;">1.49</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.22</td>
+<td style="text-align: center;">1.88</td>
+<td style="text-align: center;">2.36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"># children</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">1.68</td>
+<td style="text-align: center;">1.66</td>
+<td style="text-align: center;">1.61</td>
+<td style="text-align: center;">1.64</td>
+<td style="text-align: center;">1.64</td>
+<td style="text-align: center;">1.62</td>
+<td style="text-align: center;">1.62</td>
+<td style="text-align: center;">1.60</td>
+</tr>
+</tbody>
 </table>
-<p>The English <span><em>Wiki</em></span> dataset was manually annotated and reviewed by a second annotator. The German
-    20K Leagues corpus is already fully annotated, and its review by a second will be concluded by June. The English and
-    French 20K Leagues are manually annotated, and will be reviewed by a secondary reviewer in time for the trial data
-    ready in July.</p>
-<p>All UCCA corpora are freely available under the Creative Commons Attribution-ShareAlike 3.0 Unported license,<a
-        href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and are available online.<a href="#fn2"
-                                                                                                  class="footnote-ref"
-                                                                                                  id="fnref2"><sup>2</sup></a>
-</p>
-<p>The <span><em>Wiki</em></span> UCCA corpus consists of 5225 English sentences, corresponding to about 160K tokens. In
-    addition to the in-domain test set, the English part of the 20K Leagues corpus <span class="citation"
-                                                                                         data-cites="sulem2015conceptual"></span>
-    will serve as an out-of-domain test set. Both in-domain and out-of-domain test sets have only been used by a single
-    work <span class="citation" data-cites="hershcovich2017a"></span>, so there is no danger of data over-use. In
-    German, the train, development, and test sets will be taken from the 20K Leagues corpus, and will jointly consist of
-    6004 sentences, corresponding to about 136K tokens.</p>
-<p>Given the small amount of annotated data available for French, we will only provide development and test sets for
-    this setting. We expect systems for French to use semi-supervised approaches, such as cross-lingual learning or
-    structure projection using the parallel corpus, or relying on datasets with related formalisms such as Universal
-    Dependencies <span class="citation" data-cites="nivre2016universal"></span>. We will also release the full
-    unannotated 20K Leagues corpus, tokenized and aligned (automatically) in the three languages, in order to facilitate
-    participants to take cross-lingual approaches.</p>
-<p>We will provide validation scripts that can be used on system outputs. Their goal is to rule out cases that are
-    inconsistent with the UCCA annotation guidelines. For example, a Scene, defined by the presence of a Process or a
-    State, should include at least one Participant. We will provide a full documentation of the validation rules, to
-    allow participants to integrate them as constraints into their parsers.</p>
-<p>Data sets will be released in XML format, which includes the tokenized text and automatic pre-processing using the
-    spaCy toolkit (see §<a href="#sec:evaluation" data-reference-type="ref" data-reference="sec:evaluation">[sec:evaluation]</a>),
-    and for the train and development sets also their gold-standard UCCA annotation.<a href="#fn3" class="footnote-ref"
-                                                                                       id="fnref3"><sup>1</sup></a> An
-    example XML is given below.</p>
-<pre>
-    &lt;root annotationID=&quot;0&quot; passageID=&quot;504&quot;&gt;
+<p>The English <span><em>Wiki</em></span> dataset was manually annotated and reviewed by a second annotator. The German 20K Leagues corpus is already fully annotated, and its review by a second will be concluded by June. The English and French 20K Leagues are manually annotated, and will be reviewed by a secondary reviewer in time for the trial data ready in July.</p>
+<p>All UCCA corpora are freely available under the Creative Commons Attribution-ShareAlike 3.0 Unported license,<a id="fnref1" class="footnote-ref" href="#fn1"><sup>1</sup></a> and are available online.<a id="fnref2" class="footnote-ref" href="#fn2"><sup>2</sup></a></p>
+<p>The <span><em>Wiki</em></span> UCCA corpus consists of 5225 English sentences, corresponding to about 160K tokens. In addition to the in-domain test set, the English part of the 20K Leagues corpus will serve as an out-of-domain test set. Both in-domain and out-of-domain test sets have only been used by a single work , so there is no danger of data over-use. In German, the train, development, and test sets will be taken from the 20K Leagues corpus, and will jointly consist of 6004 sentences, corresponding to about 136K tokens.</p>
+<p>Given the small amount of annotated data available for French, we will only provide development and test sets for this setting. We expect systems for French to use semi-supervised approaches, such as cross-lingual learning or structure projection using the parallel corpus, or relying on datasets with related formalisms such as Universal Dependencies . We will also release the full unannotated 20K Leagues corpus, tokenized and aligned (automatically) in the three languages, in order to facilitate participants to take cross-lingual approaches.</p>
+<p>We will provide validation scripts that can be used on system outputs. Their goal is to rule out cases that are inconsistent with the UCCA annotation guidelines. For example, a Scene, defined by the presence of a Process or a State, should include at least one Participant. We will provide a full documentation of the validation rules, to allow participants to integrate them as constraints into their parsers.</p>
+<p>Data sets will be released in XML format, which includes the tokenized text and automatic pre-processing using the spaCy toolkit (see &sect;<a href="#sec:evaluation" data-reference-type="ref" data-reference="sec:evaluation">[sec:evaluation]</a>), and for the train and development sets also their gold-standard UCCA annotation.<a id="fnref3" class="footnote-ref" href="#fn3"><sup>1</sup></a> An example XML is given below.</p>
+<pre>    &lt;root annotationID="0" passageID="504"&gt;
   &lt;attributes /&gt;
-  &lt;layer layerID=&quot;0&quot;&gt;
+  &lt;layer layerID="0"&gt;
     &lt;attributes /&gt;
-    &lt;node ID=&quot;0.1&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;1&quot;
-        text=&quot;After&quot; /&gt;
-      &lt;extra dep=&quot;prep&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;4&quot;
-        lemma=&quot;after&quot; pos=&quot;ADP&quot;
-        shape=&quot;Xxxxx&quot; tag=&quot;IN&quot; /&gt;
+    &lt;node ID="0.1" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="1"
+        text="After" /&gt;
+      &lt;extra dep="prep" ent_iob="2"
+        ent_type="" head="4"
+        lemma="after" pos="ADP"
+        shape="Xxxxx" tag="IN" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.2&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;2&quot;
-        text=&quot;graduation&quot; /&gt;
-      &lt;extra dep=&quot;pobj&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;-1&quot;
-        lemma=&quot;graduation&quot; pos=&quot;NOUN&quot;
-        shape=&quot;xxxx&quot; tag=&quot;NN&quot; /&gt;
+    &lt;node ID="0.2" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="2"
+        text="graduation" /&gt;
+      &lt;extra dep="pobj" ent_iob="2"
+        ent_type="" head="-1"
+        lemma="graduation" pos="NOUN"
+        shape="xxxx" tag="NN" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.3&quot; type=&quot;Punctuation&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;3&quot; text=&quot;,&quot; /&gt;
-      &lt;extra dep=&quot;punct&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;2&quot; lemma=&quot;,&quot;
-        pos=&quot;PUNCT&quot; shape=&quot;,&quot;  tag=&quot;,&quot; /&gt;
+    &lt;node ID="0.3" type="Punctuation"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="3" text="," /&gt;
+      &lt;extra dep="punct" ent_iob="2"
+        ent_type="" head="2" lemma=","
+        pos="PUNCT" shape=","  tag="," /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.4&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;4&quot;
-        text=&quot;Mary&quot; /&gt;
-      &lt;extra dep=&quot;nsubj&quot; ent_iob=&quot;3&quot;
-        ent_type=&quot;PERSON&quot; head=&quot;1&quot;
-        lemma=&quot;mary&quot; pos=&quot;PROPN&quot;
-        shape=&quot;Xxxx&quot; tag=&quot;NNP&quot; /&gt;
+    &lt;node ID="0.4" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="4"
+        text="Mary" /&gt;
+      &lt;extra dep="nsubj" ent_iob="3"
+        ent_type="PERSON" head="1"
+        lemma="mary" pos="PROPN"
+        shape="Xxxx" tag="NNP" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.5&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;5&quot;
-        text=&quot;moved&quot; /&gt;
-      &lt;extra dep=&quot;ROOT&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;0&quot;
-        lemma=&quot;move&quot; pos=&quot;VERB&quot;
-        shape=&quot;xxxx&quot; tag=&quot;VBD&quot; /&gt;
+    &lt;node ID="0.5" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="5"
+        text="moved" /&gt;
+      &lt;extra dep="ROOT" ent_iob="2"
+        ent_type="" head="0"
+        lemma="move" pos="VERB"
+        shape="xxxx" tag="VBD" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.6&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;6&quot; text=&quot;to&quot; /&gt;
-      &lt;extra dep=&quot;prep&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;-1&quot; lemma=&quot;to&quot;
-        pos=&quot;ADP&quot; shape=&quot;xx&quot;  tag=&quot;IN&quot; /&gt;
+    &lt;node ID="0.6" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="6" text="to" /&gt;
+      &lt;extra dep="prep" ent_iob="2"
+        ent_type="" head="-1" lemma="to"
+        pos="ADP" shape="xx"  tag="IN" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.7&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;7&quot;
-        text=&quot;New&quot; /&gt;
-      &lt;extra dep=&quot;compound&quot; ent_iob=&quot;3&quot;
-        ent_type=&quot;GPE&quot; head=&quot;1&quot;
-        lemma=&quot;new&quot; pos=&quot;PROPN&quot;
-        shape=&quot;Xxx&quot; tag=&quot;NNP&quot; /&gt;
+    &lt;node ID="0.7" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="7"
+        text="New" /&gt;
+      &lt;extra dep="compound" ent_iob="3"
+        ent_type="GPE" head="1"
+        lemma="new" pos="PROPN"
+        shape="Xxx" tag="NNP" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.8&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;8&quot;
-        text=&quot;York&quot; /&gt;
-      &lt;extra dep=&quot;compound&quot; ent_iob=&quot;1&quot;
-        ent_type=&quot;GPE&quot; head=&quot;1&quot;
-        lemma=&quot;york&quot; pos=&quot;PROPN&quot;
-        shape=&quot;Xxxx&quot; tag=&quot;NNP&quot; /&gt;
+    &lt;node ID="0.8" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="8"
+        text="York" /&gt;
+      &lt;extra dep="compound" ent_iob="1"
+        ent_type="GPE" head="1"
+        lemma="york" pos="PROPN"
+        shape="Xxxx" tag="NNP" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.9&quot; type=&quot;Word&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;9&quot;
-        text=&quot;City&quot; /&gt;
-      &lt;extra dep=&quot;pobj&quot; ent_iob=&quot;1&quot;
-        ent_type=&quot;GPE&quot; head=&quot;-3&quot;
-        lemma=&quot;city&quot; pos=&quot;PROPN&quot;
-        shape=&quot;Xxxx&quot; tag=&quot;NNP&quot; /&gt;
+    &lt;node ID="0.9" type="Word"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="9"
+        text="City" /&gt;
+      &lt;extra dep="pobj" ent_iob="1"
+        ent_type="GPE" head="-3"
+        lemma="city" pos="PROPN"
+        shape="Xxxx" tag="NNP" /&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;0.10&quot; type=&quot;Punctuation&quot;&gt;
-      &lt;attributes paragraph=&quot;1&quot;
-        paragraph_position=&quot;10&quot; text=&quot;.&quot; /&gt;
-      &lt;extra dep=&quot;punct&quot; ent_iob=&quot;2&quot;
-        ent_type=&quot;&quot; head=&quot;-5&quot; lemma=&quot;.&quot;
-        pos=&quot;PUNCT&quot; shape=&quot;.&quot;  tag=&quot;.&quot; /&gt;
+    &lt;node ID="0.10" type="Punctuation"&gt;
+      &lt;attributes paragraph="1"
+        paragraph_position="10" text="." /&gt;
+      &lt;extra dep="punct" ent_iob="2"
+        ent_type="" head="-5" lemma="."
+        pos="PUNCT" shape="."  tag="." /&gt;
     &lt;/node&gt;
   &lt;/layer&gt;
 
 
-  &lt;layer layerID=&quot;1&quot;&gt;
+  &lt;layer layerID="1"&gt;
     &lt;attributes /&gt;
-    &lt;node ID=&quot;1.1&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.1" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;1.2&quot; type=&quot;L&quot;&gt;
+      &lt;edge toID="1.2" type="L"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
-      &lt;edge toID=&quot;1.3&quot; type=&quot;H&quot;&gt;
+      &lt;edge toID="1.3" type="H"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
-      &lt;edge toID=&quot;1.5&quot; type=&quot;U&quot;&gt;
+      &lt;edge toID="1.5" type="U"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
-      &lt;edge toID=&quot;1.6&quot; type=&quot;H&quot;&gt;
+      &lt;edge toID="1.6" type="H"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
-      &lt;edge toID=&quot;1.12&quot; type=&quot;U&quot;&gt;
+      &lt;edge toID="1.12" type="U"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.2&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.2" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.1&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="0.1" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.3&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.3" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;1.4&quot; type=&quot;P&quot;&gt;
+      &lt;edge toID="1.4" type="P"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
-      &lt;edge toID=&quot;1.7&quot; type=&quot;A&quot;&gt;
-        &lt;attributes remote=&quot;True&quot; /&gt;
+      &lt;edge toID="1.7" type="A"&gt;
+        &lt;attributes remote="True" /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.4&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.4" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.2&quot; type=&quot;Terminal&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-    &lt;/node&gt;
-    &lt;node ID=&quot;1.5&quot; type=&quot;PNCT&quot;&gt;
-      &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.3&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="0.2" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.6&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.5" type="PNCT"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;1.7&quot; type=&quot;A&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-      &lt;edge toID=&quot;1.8&quot; type=&quot;P&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-      &lt;edge toID=&quot;1.9&quot; type=&quot;A&quot;&gt;
+      &lt;edge toID="0.3" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.7&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.6" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.4&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="1.7" type="A"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+      &lt;edge toID="1.8" type="P"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+      &lt;edge toID="1.9" type="A"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.8&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.7" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.5&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="0.4" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.9&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.8" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;1.10&quot; type=&quot;R&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-      &lt;edge toID=&quot;1.11&quot; type=&quot;C&quot;&gt;
+      &lt;edge toID="0.5" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.10&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.9" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.6&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="1.10" type="R"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+      &lt;edge toID="1.11" type="C"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.11&quot; type=&quot;FN&quot;&gt;
+    &lt;node ID="1.10" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.7&quot; type=&quot;Terminal&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-      &lt;edge toID=&quot;0.8&quot; type=&quot;Terminal&quot;&gt;
-        &lt;attributes /&gt;
-      &lt;/edge&gt;
-      &lt;edge toID=&quot;0.9&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="0.6" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
-    &lt;node ID=&quot;1.12&quot; type=&quot;PNCT&quot;&gt;
+    &lt;node ID="1.11" type="FN"&gt;
       &lt;attributes /&gt;
-      &lt;edge toID=&quot;0.10&quot; type=&quot;Terminal&quot;&gt;
+      &lt;edge toID="0.7" type="Terminal"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+      &lt;edge toID="0.8" type="Terminal"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+      &lt;edge toID="0.9" type="Terminal"&gt;
+        &lt;attributes /&gt;
+      &lt;/edge&gt;
+    &lt;/node&gt;
+    &lt;node ID="1.12" type="PNCT"&gt;
+      &lt;attributes /&gt;
+      &lt;edge toID="0.10" type="Terminal"&gt;
         &lt;attributes /&gt;
       &lt;/edge&gt;
     &lt;/node&gt;
   &lt;/layer&gt;
 &lt;/root&gt;
 </pre>
-<section class="footnotes">
-    <hr/>
-
-    <section class="footnotes">
-        <hr/>
-        <ol>
-            <li id="fn1"><p><a href="http://creativecommons.org/licenses/by-sa/3.0" class="uri">http://creativecommons.org/licenses/by-sa/3.0</a><a
-                    href="#fnref1" class="footnote-back">↩</a></p></li>
-            <li id="fn2"><p><a href="https://github.com/huji-nlp/ucca-corpora" class="uri">https://github.com/huji-nlp/ucca-corpora</a><a
-                    href="#fnref2" class="footnote-back">↩</a></p></li>
-            <li id="fn3"><p><a href="https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format" class="uri">https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format</a><a
-                    href="#fnref3" class="footnote-back">↩</a></p></li>
-        </ol>
-
-    </section>
-</body>
-</html>
+<hr /><hr /><ol>
+<li id="fn1">
+<p><a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0">http://creativecommons.org/licenses/by-sa/3.0</a><a class="footnote-back" href="#fnref1">↩</a></p>
+</li>
+<li id="fn2">
+<p><a class="uri" href="https://github.com/huji-nlp/ucca-corpora">https://github.com/huji-nlp/ucca-corpora</a><a class="footnote-back" href="#fnref2">↩</a></p>
+</li>
+<li id="fn3">
+<p><a class="uri" href="https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format">https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format</a><a class="footnote-back" href="#fnref3">↩</a></p>
+</li>
+</ol>
