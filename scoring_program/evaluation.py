@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import sys
 import os.path
+from collections import OrderedDict
 from semstr.evaluate import evaluate_all, Scores, passage_format, EVALUATORS, summarize
 from ucca.evaluation import LABELED, UNLABELED
+from ucca.constructions import CATEGORY_DESCRIPTIONS
 import yaml
 from google.oauth2 import service_account
 import googleapiclient.discovery
@@ -52,10 +54,12 @@ if __name__ == "__main__":
                                    "table {\n"
                                    "font-family: Tahoma, Geneva, sans-serif;\n"
                                    "border: 0px solid #000000;\n"
-                                   "width: 350px;\n"
+                                   "width: 100%;\n"
                                    "height: 200px;\n"
                                    "text-align: center;\n"
                                    "border-collapse: collapse;\n"
+                                   
+                                   # "padding-right: 150px;\n"
                                    "}\n"
                                    "td, th {\n"
                                    "border: 1px solid #000000;\n"
@@ -81,6 +85,8 @@ if __name__ == "__main__":
                                    "<title>Detailed Results</title>\n"
                                    "</head>\n"
                                    "<body>\n")
+            #header
+            output_html_file.write('<h1>Detailed Results</h1>\n')
             # table
             output_html_file.write('<table style="width:100%">\n'
                                    '<thead>\n'
@@ -88,6 +94,7 @@ if __name__ == "__main__":
                                    '<th rowspan="3">Track</th>\n'
                                    '<th colspan="7">Labeled</th>\n'
                                    '<th colspan="7">Unlabeled</th>\n'
+                                   '<th colspan="18" rowspan="2">Labeled fine-grained F1</th>\n'
                                    '</tr>\n'
                                    '<tr>\n'
                                    '<th rowspan="2">Averaged F1</th>\n'
@@ -110,24 +117,42 @@ if __name__ == "__main__":
                                    '<th>P</th>\n'
                                    '<th>R</th>\n'
                                    '<th>F1</th>\n'
+                                   '<th>Adverbial (D)</th>\n'
+                                   '<th>Center (C)</th>\n'
+                                    '<th>Connector (N)</th>\n' 
+                                    '<th>Elaborator (E)</th>\n'
+                                    '<th>Function (F)</th>\n'
+                                   '<th>Ground (G)</th>\n'
+                                   '<th>LinkArgument (LA)</th>\n'
+                                   '<th>LinkRelation (LR)</th>\n'
+                                   '<th>Linker (L)</th>\n'
+                                   '<th>ParallelScene (H)</th>\n'
+                                   '<th>Participant (A)</th>\n'
+                                   '<th>Process (P)</th>\n'
+                                   '<th>Punctuation (U)</th>\n'
+                                   '<th>Quantifier (Q)</th>\n'
+                                   '<th>Relator (R)</th>\n'
+                                   '<th>State (S)</th>\n'
+                                   '<th>Terminal (Terminal)</th>\n'
+                                   '<th>Time (T)</th>\n'
                                    '</tr>\n'
                                    '</thead>\n'
                                    '<tbody>\n')
 
+            #regular results - P,R,F1 for labeled/unlabeled
             for (lang, track) in competitions:
                 competition = lang + "_" + track
                 if os.path.exists(submission_dir + "/" + competition):
                     values = [metadata["submitted-by"], metadata["competition-submission"],
-                              metadata["submitted-at"].strftime("%d.%m.%Y")]
+                              metadata["submitted-at"].strftime("%d.%m.%Y ")]
                     print("Running evaluation on %s track" % (competition))
 
                     # run evaluation
                     files = [[os.path.join(d, f) for f in os.listdir(d)] if os.path.isdir(d) else [d] for d in
                              (submission_dir + "/" + competition, truth_dir + "/" + competition)]
-                    evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS[None]).evaluate
-                    results = list(evaluate_all(evaluate, files, format=None, unlabeled=False, matching_ids=True))
+                    evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"]).evaluate
+                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True))
                     summary = Scores(results)
-                    summarize(summary)
 
                     # write results to html file and append to values
                     output_html_file.write("<tr>\n"
@@ -146,6 +171,28 @@ if __name__ == "__main__":
                     for (title, field) in zip(summary.titles(UNLABELED), summary.fields(UNLABELED)):
                         output_html_file.write("<td>%.3f</td>\n" % (float(field)))
                         values.append(float(field))
+
+
+                    # categories
+                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True,
+                                                constructions=["categories"]))
+                    summary = Scores(results)
+                    summarize(summary)
+                    categories_results = {name:"-" for name in CATEGORY_DESCRIPTIONS.values()}
+                    for (title, field) in zip(summary.titles(LABELED), summary.fields(LABELED)):
+                        name = title.split("_")[1]
+                        score =title.split("_")[-1]
+                        if name in CATEGORY_DESCRIPTIONS and score =="f1":
+                            categories_results[CATEGORY_DESCRIPTIONS[name]] = field
+
+                    for name, field in OrderedDict(sorted(categories_results.items(), key=lambda t: t[0])).items():
+                        if field == "-":
+
+                            output_html_file.write("<td>%s</td>\n" % ((field)))
+                            values.append(field)
+                        else:
+                            output_html_file.write("<td>%.3f</td>\n" % (float(field)))
+                            values.append(float(field))
                     output_html_file.write("</tr>\n")
 
                     # write results to google sheet
@@ -161,11 +208,11 @@ if __name__ == "__main__":
                 else:
                     print("Results for %s track does not exists" % (competition))
 
-            output_file.write("correct: 1\n")
+            output_file.write("correct: -1\n")
 
-            output_html_file.write("<p> To see all results, have a look"
-                                   "<a href='https://docs.google.com/spreadsheets/d/" + SPREADSHEET_ID + "'> here </a>.</p>")
             output_html_file.write("</tbody>\n"
-                                   "</table>\n"
+                                   "</table>\n")
+            output_html_file.write("<p> To see all results, have a look"
+                                   "<a href='https://docs.google.com/spreadsheets/d/" + SPREADSHEET_ID + "'> here </a>.</p>"
                                    "</body>\n"
                                    "</html>")
