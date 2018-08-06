@@ -58,7 +58,7 @@ if __name__ == "__main__":
                                    "height: 200px;\n"
                                    "text-align: center;\n"
                                    "border-collapse: collapse;\n"
-                                   
+
                                    # "padding-right: 150px;\n"
                                    "}\n"
                                    "td, th {\n"
@@ -85,7 +85,7 @@ if __name__ == "__main__":
                                    "<title>Detailed Results</title>\n"
                                    "</head>\n"
                                    "<body>\n")
-            #header
+            # header
             output_html_file.write('<h1>Detailed Results</h1>\n')
             # table
             output_html_file.write('<table style="width:100%">\n'
@@ -94,7 +94,7 @@ if __name__ == "__main__":
                                    '<th rowspan="3">Track</th>\n'
                                    '<th colspan="7">Labeled</th>\n'
                                    '<th colspan="7">Unlabeled</th>\n'
-                                   '<th colspan="18" rowspan="2">Labeled fine-grained F1</th>\n'
+                                   '<th colspan="14" rowspan="2">Labeled fine-grained F1</th>\n'
                                    '</tr>\n'
                                    '<tr>\n'
                                    '<th rowspan="2">Averaged F1</th>\n'
@@ -119,27 +119,23 @@ if __name__ == "__main__":
                                    '<th>F1</th>\n'
                                    '<th>Adverbial (D)</th>\n'
                                    '<th>Center (C)</th>\n'
-                                    '<th>Connector (N)</th>\n' 
-                                    '<th>Elaborator (E)</th>\n'
-                                    '<th>Function (F)</th>\n'
+                                   '<th>Connector (N)</th>\n'
+                                   '<th>Elaborator (E)</th>\n'
+                                   '<th>Function (F)</th>\n'
                                    '<th>Ground (G)</th>\n'
-                                   '<th>LinkArgument (LA)</th>\n'
-                                   '<th>LinkRelation (LR)</th>\n'
                                    '<th>Linker (L)</th>\n'
                                    '<th>ParallelScene (H)</th>\n'
                                    '<th>Participant (A)</th>\n'
                                    '<th>Process (P)</th>\n'
                                    '<th>Punctuation (U)</th>\n'
-                                   '<th>Quantifier (Q)</th>\n'
                                    '<th>Relator (R)</th>\n'
                                    '<th>State (S)</th>\n'
                                    '<th>Terminal (Terminal)</th>\n'
-                                   '<th>Time (T)</th>\n'
                                    '</tr>\n'
                                    '</thead>\n'
                                    '<tbody>\n')
 
-            #regular results - P,R,F1 for labeled/unlabeled
+            # regular results - P,R,F1 for labeled/unlabeled
             for (lang, track) in competitions:
                 competition = lang + "_" + track
                 if os.path.exists(submission_dir + "/" + competition):
@@ -172,17 +168,17 @@ if __name__ == "__main__":
                         output_html_file.write("<td>%.3f</td>\n" % (float(field)))
                         values.append(float(field))
 
-
                     # categories
                     results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True,
                                                 constructions=["categories"]))
                     summary = Scores(results)
                     summarize(summary)
-                    categories_results = {name:"-" for name in CATEGORY_DESCRIPTIONS.values()}
+                    categories_results = {name: "-" for name in CATEGORY_DESCRIPTIONS.values() if
+                                          name not in ["LinkRelation", "LinkArgument", "Quantifier", "Time"]}
                     for (title, field) in zip(summary.titles(LABELED), summary.fields(LABELED)):
-                        name = title.split("_")[1]
-                        score =title.split("_")[-1]
-                        if name in CATEGORY_DESCRIPTIONS and score =="f1":
+                        _, name, label, score = title.split("_")
+                        if name in CATEGORY_DESCRIPTIONS and name not in ["LR", "LA", "Q",
+                                                                          "T"] and score == "f1" and label == "labeled":
                             categories_results[CATEGORY_DESCRIPTIONS[name]] = field
 
                     for name, field in OrderedDict(sorted(categories_results.items(), key=lambda t: t[0])).items():
@@ -214,5 +210,5 @@ if __name__ == "__main__":
                                    "</table>\n")
             output_html_file.write("<p> To see all results, have a look"
                                    "<a href='https://docs.google.com/spreadsheets/d/" + SPREADSHEET_ID + "'> here </a>.</p>"
-                                   "</body>\n"
-                                   "</html>")
+                                                                                                         "</body>\n"
+                                                                                                         "</html>")
