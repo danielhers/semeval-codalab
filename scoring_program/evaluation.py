@@ -146,7 +146,7 @@ if __name__ == "__main__":
                     # run evaluation
                     files = [[os.path.join(d, f) for f in os.listdir(d)] if os.path.isdir(d) else [d] for d in
                              (submission_dir + "/" + competition, truth_dir + "/" + competition)]
-                    evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"]).evaluate
+                    evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"])
                     results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True))
                     summary = Scores(results)
 
