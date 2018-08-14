@@ -23,7 +23,7 @@ if __name__ == "__main__":
     submission_dir = os.path.join(input_dir, 'res')
     truth_dir = os.path.join(input_dir, 'ref')
 
-    langs = ["English_in_domain", "English_out_of_domain", "German", "French"]
+    langs = ["UCCA_English-Wiki", "UCCA_English-20K", "UCCA_German-20K", "UCCA_French-20K"]
     tracks = ["open", "closed"]
 
     # Setup the Sheets API
@@ -43,7 +43,7 @@ if __name__ == "__main__":
         SPREADSHEET_ID = POST_EVALUATION_SPREADSHEET_ID
 
     competitions = [(lang, track) for lang in langs for track in tracks]
-    competitions.remove(("French", "closed"))
+    competitions.remove(("UCCA_French-20K", "closed"))
     with open(os.path.join(output_dir, 'scores.txt'), 'w') as output_file:
         with open(os.path.join(output_dir, 'scores.html'), 'w') as output_html_file:
             # html style
@@ -138,14 +138,14 @@ if __name__ == "__main__":
             # regular results - P,R,F1 for labeled/unlabeled
             for (lang, track) in competitions:
                 competition = lang + "_" + track
-                if os.path.exists(submission_dir + "/" + competition):
+                if os.path.exists(truth_dir + "/" + lang) and os.path.exists(submission_dir + "/" +track +"/" + lang):
                     values = [metadata["submitted-by"], metadata["competition-submission"],
                               metadata["submitted-at"].strftime("%d.%m.%Y ")]
                     print("Running evaluation on %s track" % (competition))
 
                     # run evaluation
                     files = [[os.path.join(d, f) for f in os.listdir(d)] if os.path.isdir(d) else [d] for d in
-                             (submission_dir + "/" + competition, truth_dir + "/" + competition)]
+                             (submission_dir + "/" +track +"/" + lang, truth_dir  + "/" + lang)]
                     evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"])
                     results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True))
                     summary = Scores(results)
@@ -169,16 +169,13 @@ if __name__ == "__main__":
                         values.append(float(field))
 
                     # categories
-                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True,
-                                                constructions=["categories"]))
+                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True, constructions=["categories"]))
                     summary = Scores(results)
                     summarize(summary)
-                    categories_results = {name: "-" for name in CATEGORY_DESCRIPTIONS.values() if
-                                          name not in ["LinkRelation", "LinkArgument", "Quantifier", "Time"]}
+                    categories_results = {name: "-" for name in CATEGORY_DESCRIPTIONS.values() if name not in ["LinkRelation", "LinkArgument", "Quantifier", "Time"]}
                     for (title, field) in zip(summary.titles(LABELED), summary.fields(LABELED)):
                         _, name, label, score = title.split("_")
-                        if name in CATEGORY_DESCRIPTIONS and name not in ["LR", "LA", "Q",
-                                                                          "T"] and score == "f1" and label == "labeled":
+                        if name in CATEGORY_DESCRIPTIONS and name not in ["LR", "LA", "Q","T"] and score == "f1" and label == "labeled":
                             categories_results[CATEGORY_DESCRIPTIONS[name]] = field
 
                     for name, field in OrderedDict(sorted(categories_results.items(), key=lambda t: t[0])).items():
