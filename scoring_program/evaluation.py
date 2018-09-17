@@ -144,10 +144,14 @@ if __name__ == "__main__":
                     print("Running evaluation on %s track" % (competition))
 
                     # run evaluation
-                    files = [[os.path.join(d, f) for f in os.listdir(d)] if os.path.isdir(d) else [d] for d in
-                             (submission_dir + "/" +track +"/" + lang, truth_dir  + "/" + lang)]
+                    files = [None if d is None else [os.path.join(d, f) for f in os.listdir(d) if
+                                                     not os.path.isdir(os.path.join(d, f))]
+                    if os.path.isdir(d) else [d] for d in
+                             (submission_dir + "/" + track + "/" + lang, truth_dir + "/" + lang, None)]
+
                     evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"])
-                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True))
+                    results = list(evaluate_all(evaluate, files, format="amr", name="Evaluating", unlabeled=False,
+                                                matching_ids=True))
                     summary = Scores(results)
 
                     # write results to html file and append to values
