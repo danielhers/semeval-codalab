@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     # Handle top directory in submission path
     while not any(os.path.exists(os.path.join(submission_dir, track)) for track in tracks):
-        sub_dirs = os.listdir(submission_dir)
+        sub_dirs = [sub_dir for sub_dir in os.listdir(submission_dir) if not sub_dir.startswith(("__", "."))]
         if not sub_dirs:
             raise IOError("Could not find either of " + ", ".join(tracks) + " in " + submission_dir)
         submission_dir = os.path.join(submission_dir, sub_dirs[0])
@@ -155,7 +155,7 @@ if __name__ == "__main__":
                     files = [None if d is None else [os.path.join(d, f) for f in os.listdir(d) if
                                                      not os.path.isdir(os.path.join(d, f))]
                              if os.path.isdir(d) else [d] for d in
-                             (submission_dir + "/" + track + "/" + lang, truth_dir + "/" + lang, None)]
+                             (os.path.join(submission_dir, track, lang), os.path.join(truth_dir, lang), None)]
 
                     evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"])
                     results = list(evaluate_all(evaluate, files, format="amr", name="Evaluating", unlabeled=False,
@@ -210,9 +210,7 @@ if __name__ == "__main__":
                     result = service.spreadsheets().values().append(
                         spreadsheetId=SPREADSHEET_ID, range=competition,
                         valueInputOption="RAW", body=body).execute()
-                    print('{0} cells appended.'.format(result \
-                                                       .get('updates') \
-                                                       .get('updatedCells')))
+                    print('{0} cells appended.'.format(result.get('updates').get('updatedCells')))
                 else:
                     print("Results for %s track does not exists" % competition)
 
