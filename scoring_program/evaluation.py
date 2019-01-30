@@ -26,6 +26,13 @@ if __name__ == "__main__":
     langs = ["UCCA_English-Wiki", "UCCA_English-20K", "UCCA_German-20K", "UCCA_French-20K"]
     tracks = ["open", "closed"]
 
+    # Handle top directory in submission path
+    while not any(os.path.exists(os.path.join(submission_dir, track)) for track in tracks):
+        sub_dirs = os.listdir(submission_dir)
+        if not sub_dirs:
+            raise IOError("Could not find either of " + ", ".join(tracks) + " in " + submission_dir)
+        submission_dir = os.path.join(submission_dir, sub_dirs[0])
+
     # Setup the Sheets API
     creds = service_account.Credentials.from_service_account_info(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = googleapiclient.discovery.build('sheets', 'v4', credentials=creds)
@@ -138,15 +145,16 @@ if __name__ == "__main__":
             # regular results - P,R,F1 for labeled/unlabeled
             for (lang, track) in competitions:
                 competition = lang + "_" + track
-                if os.path.exists(truth_dir + "/" + lang) and os.path.exists(submission_dir + "/" +track +"/" + lang):
+                if os.path.exists(os.path.join(truth_dir, lang)) and os.path.exists(
+                        os.path.join(submission_dir, track, lang)):
                     values = [metadata["submitted-by"], metadata["competition-submission"],
                               metadata["submitted-at"].strftime("%d.%m.%Y ")]
-                    print("Running evaluation on %s track" % (competition))
+                    print("Running evaluation on %s track" % competition)
 
                     # run evaluation
                     files = [None if d is None else [os.path.join(d, f) for f in os.listdir(d) if
                                                      not os.path.isdir(os.path.join(d, f))]
-                    if os.path.isdir(d) else [d] for d in
+                             if os.path.isdir(d) else [d] for d in
                              (submission_dir + "/" + track + "/" + lang, truth_dir + "/" + lang, None)]
 
                     evaluate = EVALUATORS.get(passage_format(files[1][0])[1], EVALUATORS["amr"])
@@ -173,13 +181,16 @@ if __name__ == "__main__":
                         values.append(float(field))
 
                     # categories
-                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True, constructions=["categories"]))
+                    results = list(evaluate_all(evaluate, files, format="amr", unlabeled=False, matching_ids=True,
+                                                constructions=["categories"]))
                     summary = Scores(results)
                     summarize(summary)
-                    categories_results = {name: "-" for name in CATEGORY_DESCRIPTIONS.values() if name not in ["LinkRelation", "LinkArgument", "Quantifier", "Time"]}
+                    categories_results = {name: "-" for name in CATEGORY_DESCRIPTIONS.values() if
+                                          name not in ["LinkRelation", "LinkArgument", "Quantifier", "Time"]}
                     for (title, field) in zip(summary.titles(LABELED), summary.fields(LABELED)):
                         _, name, label, score = title.split("_")
-                        if name in CATEGORY_DESCRIPTIONS and name not in ["LR", "LA", "Q","T"] and score == "f1" and label == "labeled":
+                        if name in CATEGORY_DESCRIPTIONS and name not in ["LR", "LA", "Q",
+                                                                          "T"] and score == "f1" and label == "labeled":
                             categories_results[CATEGORY_DESCRIPTIONS[name]] = field
 
                     for name, field in OrderedDict(sorted(categories_results.items(), key=lambda t: t[0])).items():
@@ -203,13 +214,14 @@ if __name__ == "__main__":
                                                        .get('updates') \
                                                        .get('updatedCells')))
                 else:
-                    print("Results for %s track does not exists" % (competition))
+                    print("Results for %s track does not exists" % competition)
 
             output_file.write("correct: -1\n")
 
             output_html_file.write("</tbody>\n"
                                    "</table>\n")
             output_html_file.write("<p> To see all results, have a look"
-                                   "<a href='https://docs.google.com/spreadsheets/d/" + SPREADSHEET_ID + "'> here </a>.</p>"
-                                                                                                         "</body>\n"
-                                                                                                         "</html>")
+                                   "<a href='https://docs.google.com/spreadsheets/d/" + SPREADSHEET_ID +
+                                   "'> here </a>.</p>"
+                                   "</body>\n"
+                                   "</html>")
