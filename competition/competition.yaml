@@ -1,177 +1,69 @@
-title: "SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA"
+title: 'SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA'
 description: Shared task on UCCA parsing in English, German and French.
-image: type_writer2.png
-has_registration: True
-allow_teams: True
-enable_detailed_results: True
-html:
-    overview: overview.html
-    evaluation: evaluation.html
-    terms: terms_and_conditions.html
-    data: data.html
+start_date: 2018-08-20 00:00:00+00:00
+end_date: null
 competition_docker_image: zohara/semeval2019:2
+image: logo.png
+has_registration: false
+force_submission_to_leaderboard: false
+disallow_leaderboard_modifying: false
+enable_detailed_results: true
+admin_names: danielh,zohara,eliors,Omri.Abend
+html:
+  Submissions and Results: Submissions and Results.html
+  data: data.html
+  evaluation: evaluation.html
+  get_starting_kit: get_starting_kit.html
+  overview: overview.html
+  terms: terms.html
 phases:
-    1:
-        phasenumber: 1
-        label: "Practice"
-        start_date: 2018-06-01
-        max_submissions: 999
-        is_scoring_only: False
-        scoring_program: scoring_program.zip
-        reference_data: dev_data.zip
-        leaderboard_management_mode: default
-    2:
-        phasenumber: 2
-        label: "Evaluation"
-        start_date: 2019-01-10
-        max_submissions: 1
-        is_scoring_only: False
-        scoring_program: scoring_program.zip
-        reference_data: test_data.zip
-        leaderboard_management_mode: hide_results
-    3:
-        phasenumber: 3
-        label: "Post-Evaluation"
-        start_date: 2019-02-01
-        max_submissions: 999
-        is_scoring_only: False
-        scoring_program: scoring_program.zip
-        reference_data: test_data.zip
-        auto_migration: True
-        leaderboard_management_mode: default
+  0:
+    auto_migration: false
+    color: orange
+    description: Develop and train your system, and try evaluating on development
+      data.
+    is_scoring_only: true
+    label: Practice
+    max_submissions: 999
+    max_submissions_per_day: 999
+    phasenumber: 1
+    reference_data: reference_data_1.zip
+    scoring_program: scoring_program_1.zip
+    start_date: 2018-08-20 00:00:00+00:00
+  1:
+    auto_migration: false
+    color: green
+    description: Run the trained system on test data and upload for evaluation.
+    input_data: input_data_2.zip
+    is_scoring_only: true
+    label: Evaluation
+    max_submissions: 999
+    max_submissions_per_day: 999
+    phasenumber: 2
+    reference_data: reference_data_2.zip
+    scoring_program: scoring_program_1.zip
+    start_date: 2018-12-13 00:00:00+00:00
+  2:
+    auto_migration: true
+    color: purple
+    description: ''
+    input_data: input_data_2.zip
+    is_scoring_only: true
+    label: Post-Evaluation
+    max_submissions: 999
+    max_submissions_per_day: 999
+    phasenumber: 3
+    reference_data: reference_data_2.zip
+    scoring_program: scoring_program_1.zip
+    start_date: 2019-02-01 00:00:00+00:00
 leaderboard:
-    leaderboards:
-        English_in_Domain: &EN_IN
-            label: English in Domain
-            rank: 1
-        English_out_of_Domain: &EN_OUT
-            label: English out of Domain
-            rank: 2
-        German: &DE
-            label: German
-            rank: 3
-        French: &FR
-            label: French
-            rank: 4
-    column_groups:
-        Submitted: &SUBMITTED
-            label: submitted
-        Closed: &CLOSED
-            label: closed
-        Open: &OPEN
-            label: open
-    columns:
-        submitted_English_in_domain:
-            leaderboard: *EN_IN
-            column_group: *SUBMITTED
-            label: submitted
-            rank: 1
-            numeric_format: 0
-        English_in_domain_closed_averaged_labeled_f1:
-            leaderboard: *EN_IN
-            column_group: *CLOSED
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        English_in_domain_closed_averaged_unlabeled_f1:
-            leaderboard: *EN_IN
-            column_group: *CLOSED
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-        English_in_domain_open_averaged_labeled_f1:
-            leaderboard: *EN_IN
-            column_group: *OPEN
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        English_in_domain_open_averaged_unlabeled_f1:
-            leaderboard: *EN_IN
-            column_group: *OPEN
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-
-        submitted_English_out_of_domain:
-            leaderboard: *EN_OUT
-            column_group: *SUBMITTED
-            label: submitted
-            rank: 1
-            numeric_format: 0
-        English_out_of_domain_closed_averaged_labeled_f1:
-            leaderboard: *EN_OUT
-            column_group: *CLOSED
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        English_out_of_domain_closed_averaged_unlabeled_f1:
-            leaderboard: *EN_OUT
-            column_group: *CLOSED
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-        English_out_of_domain_open_averaged_labeled_f1:
-            leaderboard: *EN_OUT
-            column_group: *OPEN
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        English_out_of_domain_open_averaged_unlabeled_f1:
-            leaderboard: *EN_OUT
-            column_group: *OPEN
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-
-        submitted_German:
-            leaderboard: *DE
-            column_group: *SUBMITTED
-            label: submitted
-            rank: 1
-            numeric_format: 0
-        German_closed_averaged_labeled_f1:
-            leaderboard: *DE
-            column_group: *CLOSED
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        German_closed_averaged_unlabeled_f1:
-            leaderboard: *DE
-            column_group: *CLOSED
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-        German_open_averaged_labeled_f1:
-            leaderboard: *DE
-            column_group: *OPEN
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        German_open_averaged_unlabeled_f1:
-            leaderboard: *DE
-            column_group: *OPEN
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-
-        submitted_French:
-            leaderboard: *FR
-            column_group: *SUBMITTED
-            label: submitted
-            rank: 1
-            numeric_format: 0
-        French_open_averaged_labeled_f1:
-            leaderboard: *FR
-            column_group: *OPEN
-            label: labeled F1
-            rank: 1
-            numeric_format: 3
-        French_open_averaged_unlabeled_f1:
-            leaderboard: *FR
-            column_group: *OPEN
-            label: unlabeled F1
-            rank: 2
-            numeric_format: 3
-
-
-
+  columns:
+    correct:
+      label: correct
+      leaderboard: &id001
+        label: Results
+        rank: 1
+      rank: 1
+      sort: desc
+  leaderboards:
+    Results: *id001

@@ -1,210 +1,111 @@
-<p>UCCA general resource page could be found <a href="%20http:/www.cs.huji.ac.il/~oabend/ucca.html">here</a>.</p>
-<p>Data</p>
-<p>This is the data for the competition. It is to be used responsibly: <a href="https://github.com/huji-nlp/ucca-corpora">ucca-corpora</a></p>
-<p>Experiments will be carried out in three languages: English, German and French. For English, we will use the Wikipedia UCCA corpus (henceforth <span><em>Wiki</em></span>) and the UCCA <span><em>Twenty Thousand Leagues Under the Sea</em></span> English-French-German parallel corpus (henceforth <span><em>20K Leagues</em></span>), which includes manual UCCA annotation for the entire book on the German side, and UCCA manual annotation for the first five chapters on the French and English sides. The statistics for the corpora are given in the following table.</p>
-<table><caption>Statistics of the <em>Wiki</em> and <em>20K Leagues</em> UCCA corpora. All counts exclude the root node.</caption>
+<h4>UCCA general resource page can be found <a href="http://www.cs.huji.ac.il/~oabend/ucca.html">here</a>.</h4>
+<h4>Data</h4>
+<p><strong>The official <a href="../../my/datasets/download/e2dc59a3-b969-4975-a6ef-32c02dce3fd6">training, development</a> and (unannotated) <a href="../../my/datasets/download/bb00116d-1f9a-4627-ad19-2136dc7ec534">test</a> data are available.</strong></p>
+<p>Data containing the corpora and pre-calculated features are published in the "<a href="19160#participate-get_starting_kit">Files</a>" page.</p>
+<table border="0">
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&nbsp;</td>
-<td style="text-align: center;">Train</td>
-<td style="text-align: center;">Dev</td>
-<td style="text-align: center;">Test</td>
-<td style="text-align: center;">Test</td>
-<td style="text-align: center;">Train</td>
-<td style="text-align: center;">Dev</td>
-<td style="text-align: center;">Test</td>
-<td style="text-align: center;">Dev</td>
-<td style="text-align: center;">Test</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"># passages</td>
-<td style="text-align: center;">300</td>
-<td style="text-align: center;">34</td>
-<td style="text-align: center;">33</td>
-<td style="text-align: center;">154</td>
-<td style="text-align: center;">300</td>
-<td style="text-align: center;">34</td>
-<td style="text-align: center;">33</td>
-<td style="text-align: center;">77</td>
-<td style="text-align: center;">77</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"># sentences</td>
-<td style="text-align: center;">4268</td>
-<td style="text-align: center;">454</td>
-<td style="text-align: center;">503</td>
-<td style="text-align: center;">506</td>
-<td style="text-align: center;">4519</td>
-<td style="text-align: center;">740</td>
-<td style="text-align: center;">745</td>
-<td style="text-align: center;">259</td>
-<td style="text-align: center;">288</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"># tokens</td>
-<td style="text-align: center;">128,444</td>
-<td style="text-align: center;">14,676</td>
-<td style="text-align: center;">15,313</td>
-<td style="text-align: center;">12,339</td>
-<td style="text-align: center;">110,053</td>
-<td style="text-align: center;">13,594</td>
-<td style="text-align: center;">13,269</td>
-<td style="text-align: center;">6,490</td>
-<td style="text-align: center;">6,439</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"># nodes</td>
-<td style="text-align: center;">298,993</td>
-<td style="text-align: center;">33,704</td>
-<td style="text-align: center;">35,718</td>
-<td style="text-align: center;">29,315</td>
-<td style="text-align: center;">257654</td>
-<td style="text-align: center;">31,440</td>
-<td style="text-align: center;">30,891</td>
-<td style="text-align: center;">15,319</td>
-<td style="text-align: center;">15,133</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">% terminal</td>
-<td style="text-align: center;">42.96</td>
-<td style="text-align: center;">43.54</td>
-<td style="text-align: center;">42.87</td>
-<td style="text-align: center;">42.09</td>
-<td style="text-align: center;">42.71</td>
-<td style="text-align: center;">43.24</td>
-<td style="text-align: center;">42.95</td>
-<td style="text-align: center;">42.37</td>
-<td style="text-align: center;">42.55</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">% non-term.</td>
-<td style="text-align: center;">58.33</td>
-<td style="text-align: center;">57.60</td>
-<td style="text-align: center;">58.35</td>
-<td style="text-align: center;">60.01</td>
-<td style="text-align: center;">57.93</td>
-<td style="text-align: center;">57.28</td>
-<td style="text-align: center;">57.48</td>
-<td style="text-align: center;">59.55</td>
-<td style="text-align: center;">59.83</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">% discont.</td>
-<td style="text-align: center;">0.54</td>
-<td style="text-align: center;">0.53</td>
-<td style="text-align: center;">0.44</td>
-<td style="text-align: center;">0.81</td>
-<td style="text-align: center;">1.45</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">1.13</td>
-<td style="text-align: center;">0.95</td>
-<td style="text-align: center;">1.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">% reentrant</td>
-<td style="text-align: center;">2.38</td>
-<td style="text-align: center;">1.88</td>
-<td style="text-align: center;">2.15</td>
-<td style="text-align: center;">0.89</td>
-<td style="text-align: center;">1.20</td>
-<td style="text-align: center;">0.78</td>
-<td style="text-align: center;">0.96</td>
-<td style="text-align: center;">1.70</td>
-<td style="text-align: center;">2.25</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">% implicit</td>
-<td style="text-align: center;">0.52</td>
-<td style="text-align: center;">0.63</td>
-<td style="text-align: center;">0.37</td>
-<td style="text-align: center;">1.37</td>
-<td style="text-align: center;">1.11</td>
-<td style="text-align: center;">0.91</td>
-<td style="text-align: center;">0.76</td>
-<td style="text-align: center;">1.26</td>
-<td style="text-align: center;">1.56</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"># edges</td>
-<td style="text-align: center;">287,914</td>
-<td style="text-align: center;">32,460</td>
-<td style="text-align: center;">34,336</td>
-<td style="text-align: center;">27,749</td>
-<td style="text-align: center;">244,199</td>
-<td style="text-align: center;">29,495</td>
-<td style="text-align: center;">28,833</td>
-<td style="text-align: center;">14,539</td>
-<td style="text-align: center;">14,184</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">% primary</td>
-<td style="text-align: center;">98.25</td>
-<td style="text-align: center;">98.75</td>
-<td style="text-align: center;">98.74</td>
-<td style="text-align: center;">97.73</td>
-<td style="text-align: center;">98.51</td>
-<td style="text-align: center;">99.00</td>
-<td style="text-align: center;">98.78</td>
-<td style="text-align: center;">98.12</td>
-<td style="text-align: center;">97.64</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">% remote</td>
-<td style="text-align: center;">1.75</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">1.26</td>
-<td style="text-align: center;">2.27</td>
-<td style="text-align: center;">1.49</td>
-<td style="text-align: center;">1.00</td>
-<td style="text-align: center;">1.22</td>
-<td style="text-align: center;">1.88</td>
-<td style="text-align: center;">2.36</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-<td style="text-align: center;">&nbsp;</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"># children</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">1.68</td>
-<td style="text-align: center;">1.66</td>
-<td style="text-align: center;">1.61</td>
-<td style="text-align: center;">1.64</td>
-<td style="text-align: center;">1.64</td>
-<td style="text-align: center;">1.62</td>
-<td style="text-align: center;">1.62</td>
-<td style="text-align: center;">1.60</td>
+<tr>
+<td>The&nbsp;<strong>Public Data</strong>&nbsp;contains <strong>the&nbsp;training and development data</strong> in xml, amr, conllu, sdp and txt formats, each in a separate zip file.&nbsp; Within each zip file, there is a separate directory per corpus. Please train your system on the&nbsp;<strong>training</strong>&nbsp;data in the format of your choosing, and&nbsp;<a href="19160#participate-submit_results">submit&nbsp;</a>your output on the&nbsp;<strong>test</strong>&nbsp;data (in any format, but see the required directory structure&nbsp;<a href="19160#learn_the_details-submissions-and-results">here</a>).</td>
 </tr>
 </tbody>
 </table>
-<p>The English <span><em>Wiki</em></span> dataset was manually annotated and reviewed by a second annotator. The German 20K Leagues corpus is already fully annotated, and its review by a second will be concluded by June. The English and French 20K Leagues are manually annotated, and will be reviewed by a secondary reviewer in time for the trial data ready in July.</p>
-<p>All UCCA corpora are freely available under the Creative Commons Attribution-ShareAlike 3.0 Unported license,<a id="fnref1" class="footnote-ref" href="#fn1"><sup>1</sup></a> and are available online.<a id="fnref2" class="footnote-ref" href="#fn2"><sup>2</sup></a></p>
-<p>The <span><em>Wiki</em></span> UCCA corpus consists of 5225 English sentences, corresponding to about 160K tokens. In addition to the in-domain test set, the English part of the 20K Leagues corpus will serve as an out-of-domain test set. Both in-domain and out-of-domain test sets have only been used by a single work , so there is no danger of data over-use. In German, the train, development, and test sets will be taken from the 20K Leagues corpus, and will jointly consist of 6004 sentences, corresponding to about 136K tokens.</p>
-<p>Given the small amount of annotated data available for French, we will only provide development and test sets for this setting. We expect systems for French to use semi-supervised approaches, such as cross-lingual learning or structure projection using the parallel corpus, or relying on datasets with related formalisms such as Universal Dependencies . We will also release the full unannotated 20K Leagues corpus, tokenized and aligned (automatically) in the three languages, in order to facilitate participants to take cross-lingual approaches.</p>
-<p>We will provide validation scripts that can be used on system outputs. Their goal is to rule out cases that are inconsistent with the UCCA annotation guidelines. For example, a Scene, defined by the presence of a Process or a State, should include at least one Participant. We will provide a full documentation of the validation rules, to allow participants to integrate them as constraints into their parsers.</p>
-<p>Data sets will be released in XML format, which includes the tokenized text and automatic pre-processing using the spaCy toolkit (see &sect;<a href="#sec:evaluation" data-reference-type="ref" data-reference="sec:evaluation">[sec:evaluation]</a>), and for the train and development sets also their gold-standard UCCA annotation.<a id="fnref3" class="footnote-ref" href="#fn3"><sup>1</sup></a> An example XML is given below.</p>
-<pre>    &lt;root annotationID="0" passageID="504"&gt;
+<p>Competitions are held in three languages: English, German and French. For English, we use the Wikipedia UCCA corpus (henceforth <em>Wiki</em>) and the UCCA <em>Twenty Thousand Leagues Under the Sea</em> English-French-German parallel corpus (henceforth <em>20K Leagues</em>), which includes manual UCCA annotation for the entire book on the German side, and UCCA manual annotation for the first five chapters on the French and English sides. The statistics for the corpora are given in the following table.</p>
+<p><strong>For participating in the shared task, please use the data published <a href="19160#participate-get_starting_kit">here </a>and not the data from GitHub.</strong></p>
+<table dir="ltr" border="1" cellspacing="0" cellpadding="0"><colgroup><col width="125" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /></colgroup>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td rowspan="1" colspan="2" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;train/trial&quot;}">train/trial</td>
+<td rowspan="1" colspan="2" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;dev&quot;}">dev</td>
+<td rowspan="1" colspan="2" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;test&quot;}">test</td>
+<td rowspan="1" colspan="3" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;total&quot;}">total</td>
+</tr>
+<tr>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;corpus&quot;}">corpus</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;sentences&quot;}">sentences</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;tokens&quot;}">tokens</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;sentences&quot;}">sentences</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;tokens&quot;}">tokens</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;sentences&quot;}">sentences</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;tokens&quot;}">tokens</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;passages&quot;}">passages</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;sentences&quot;}">sentences</td>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;tokens&quot;}">tokens</td>
+</tr>
+<tr>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;UCCA_English-Wiki&quot;}" data-sheets-formula="=HYPERLINK(&quot;https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_English-Wiki&quot;,&quot;UCCA_English-Wiki&quot;)"><a class="in-cell-link" href="https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_English-Wiki" target="_blank">UCCA_English-Wiki</a></td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4113}">4113</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:124935}">124935</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:514}">514</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:17784}">17784</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:515}">515</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15854}">15854</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:367}">367</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5142}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">5142</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:158573}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">158573</td>
+</tr>
+<tr>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;UCCA_English-20K&quot;}" data-sheets-formula="=HYPERLINK(&quot;https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_English-20K&quot;,&quot;UCCA_English-20K&quot;)"><a class="in-cell-link" href="https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_English-20K" target="_blank">UCCA_English-20K</a></td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}">0</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:492}">492</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12574}">12574</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:154}">154</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:492}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">492</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12574}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">12574</td>
+</tr>
+<tr>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;UCCA_French-20K&quot;}" data-sheets-formula="=HYPERLINK(&quot;https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_French-20K&quot;,&quot;UCCA_French-20K&quot;)"><a class="in-cell-link" href="https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_French-20K" target="_blank">UCCA_French-20K</a></td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15}">15</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:618}">618</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:238}">238</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6374}">6374</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:239}">239</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5962}">5962</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:154}">154</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:492}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">492</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12954}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">12954</td>
+</tr>
+<tr>
+<td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;UCCA_German-20K&quot;}" data-sheets-formula="=HYPERLINK(&quot;https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_German-20K&quot;,&quot;UCCA_German-20K&quot;)"><a class="in-cell-link" href="https://github.com/UniversalConceptualCognitiveAnnotation/UCCA_German-20K" target="_blank">UCCA_German-20K</a></td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5211}">5211</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:119872}">119872</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:651}">651</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12334}">12334</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:652}">652</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:12325}">12325</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:367}">367</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6514}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">6514</td>
+<td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:144531}" data-sheets-formula="=sum(R[0]C[-7],R[0]C[-5],R[0]C[-3])">144531<br /><br /></td>
+</tr>
+</tbody>
+</table>
+<p><br />All datasets were manually annotated and reviewed by a second annotator.&nbsp;</p>
+<p style="direction: ltr;">In addition to the in-domain test set, the English part of the 20K Leagues corpus serves as an out-of-domain test set. In German, the train, development, and test sets are taken from the 20K Leagues corpus.</p>
+<p>Given the small amount of annotated data available for French, we only provide trial, development and test sets for this setting. We expect systems for French to use semi-supervised approaches, such as cross-lingual learning or structure projection using the parallel corpus, or relying on datasets with related formalisms such as Universal Dependencies. We also release the full unannotated 20K Leagues corpus, tokenized and aligned (automatically) in English and French, in order to facilitate participants to take cross-lingual approaches. The unannotated text is available <a href="../../my/datasets/download/449b4afe-4f6e-419e-ba51-f220f0a36c3d">here</a>.</p>
+<p>We provide a validation script that can be used on system outputs. Its goal is to rule out cases that are inconsistent with the UCCA annotation guidelines. For example, a Scene, defined by the presence of a Process or a State, should include at least one Participant. Given a file or directory of files, they can be validated using the <a href="https://github.com/danielhers/ucca/blob/master/scripts/validate.py">validate.py</a> script: after installing the <strong>ucca</strong> package in Python (<strong>pip install ucca</strong>), run:</p>
+<table border="0">
+<tbody>
+<tr>
+<td>python -m scripts.validate FILENAMES</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Note that system outputs do not need to pass validation.</strong></p>
+<p>Data sets are released in XML format, which includes the tokenized text and automatic pre-processing using spaCy and UDPipe (see <a href="19160#learn_the_details-evaluation">here</a>), and for the train and development sets, also their gold-standard UCCA annotation.<a id="fnref3" class="footnote-ref" href="#fn3"><sup>1</sup></a> An example XML is given below.</p>
+<p>To visualize a file or directory of files (either pre-annotated or a system's output), use the <a href="https://github.com/danielhers/ucca/blob/master/scripts/visualize.py">visualize.py</a> script:</p>
+<table border="0">
+<tbody>
+<tr>
+<td>python -m scripts.visualize FILENAMES</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<pre>&lt;root annotationID="0" passageID="504"&gt;
   &lt;attributes /&gt;
   &lt;layer layerID="0"&gt;
     &lt;attributes /&gt;
@@ -405,11 +306,5 @@
 <hr /><hr /><ol>
 <li id="fn1">
 <p><a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0">http://creativecommons.org/licenses/by-sa/3.0</a><a class="footnote-back" href="#fnref1">↩</a></p>
-</li>
-<li id="fn2">
-<p><a class="uri" href="https://github.com/huji-nlp/ucca-corpora">https://github.com/huji-nlp/ucca-corpora</a><a class="footnote-back" href="#fnref2">↩</a></p>
-</li>
-<li id="fn3">
-<p><a class="uri" href="https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format">https://github.com/huji-nlp/ucca-corpora/tree/master/wiki#xml-format</a><a class="footnote-back" href="#fnref3">↩</a></p>
 </li>
 </ol>
