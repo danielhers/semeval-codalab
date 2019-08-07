@@ -25,7 +25,7 @@
                                                                                                             class="footnote-ref"
                                                                                                             href="#fn1"><sup>1</sup></a>,
     and automatic POS tags and syntactic dependency relations provided by UDPipe.<a id="fnref2" class="footnote-ref"
-                                                                                    href="#fn2"><sup>2</sup></a>&nbsp;In
+                                                                                    href="#fn2"><sup>2</sup></a> In
     addition, the closed track allows the use of word embeddings provided by fastText<a id="fnref2" class="footnote-ref"
                                                                                         href="#fn3"><sup>3</sup> </a>
     for all languages.</p>
@@ -58,12 +58,12 @@
 <table border="0">
     <tbody>
     <tr>
-        <td style="width: 2cm;" scope="col">&nbsp;</td>
+        <td style="width: 2cm;" scope="col"> </td>
         <td style="width: 2cm;" scope="col" colspan="3"><strong>Primary</strong></td>
         <td style="width: 2cm;" scope="col" colspan="3"><strong>Remote</strong></td>
     </tr>
     <tr>
-        <td style="width: 2cm;" scope="col">&nbsp;</td>
+        <td style="width: 2cm;" scope="col"> </td>
         <td style="width: 2cm;" scope="col"><strong>LP</strong></td>
         <td style="width: 2cm;" scope="col"><strong>LR</strong></td>
         <td style="width: 2cm;" scope="col"><strong>LF</strong></td>
@@ -109,21 +109,21 @@
     </tr>
     </tbody>
 </table>
-<p>&nbsp;</p>
+<p> </p>
 <h3 id="scoring.">Scoring</h3>
 <p>In order to evaluate how similar an output UCCA structure is to a gold UCCA graph, we use <span> <em>DAG <span
         class="math inline">F<sub>1</sub></span>-score</em> </span>. Formally, over two UCCA annotations <span
-        class="math inline">G<sub>1</sub></span>&nbsp;and <span class="math inline">G<sub>2</sub></span> that share
-    their set of leaves (tokens) <span class="math inline">W</span>&nbsp;and for a node <span
-            class="math inline">v</span>&nbsp;in <span class="math inline">G<sub>1</sub></span>&nbsp;or&nbsp;<span
-            class="math inline">G<sub>2</sub></span>&nbsp;, define its yield <span class="math inline">(yield(v) subset or equal W)</span>
+        class="math inline">G<sub>1</sub></span> and <span class="math inline">G<sub>2</sub></span> that share
+    their set of leaves (tokens) <span class="math inline">W</span> and for a node <span
+            class="math inline">v</span> in <span class="math inline">G<sub>1</sub></span> or <span
+            class="math inline">G<sub>2</sub></span> , define its yield <span class="math inline">(yield(v) subset or equal W)</span>
     as its set of leaf descendants. Define a pair of edges <span class="math inline">((v<sub>1</sub>,u<sub>1</sub>) in G<sub>1</sub>)</span>
     and <span class="math inline">((v<sub>2</sub>,u<sub>2</sub>) in G<sub>2</sub>)</span> to be matching if <span
             class="math inline">(yield(u<sub>1</sub>) = yield(u<sub>2</sub>))</span> and they have the same label.
     Labeled Precision and Recall are defined by dividing the number of matching edges in <span
-            class="math inline">G<sub>1</sub></span>&nbsp;and&nbsp;<span class="math inline">G<sub>2</sub></span>&nbsp;&nbsp;by
-    <span class="math inline">|E<sub>1</sub>|</span>&nbsp;and <span class="math inline">|E<sub>2</sub>|</span>&nbsp;respectively.
-    <span> <em>DAG <span class="math inline">F<sub>1</sub></span>-score</em> </span> is their harmonic mean.&nbsp; We
+            class="math inline">G<sub>1</sub></span> and <span class="math inline">G<sub>2</sub></span>  by
+    <span class="math inline">|E<sub>1</sub>|</span> and <span class="math inline">|E<sub>2</sub>|</span> respectively.
+    <span> <em>DAG <span class="math inline">F<sub>1</sub></span>-score</em> </span> is their harmonic mean.  We
     will report Precision, Recall and F1 scores both for <strong>primary</strong> and <strong>remote</strong> edges. For
     the sake of this task's evaluation implicit units are disregarded and do not count for the evaluation. Also, the
     measures are indifferent to the position of the Function category.</p>
@@ -143,20 +143,20 @@
     Participants, Adverbials), non-Scene elements (Elaborators, Connectors, Centers), and inter-Scene Linkage (Parallel
     Scenes, Linkage, Ground). We will report performance for each of these sets separately, leaving out Function and
     Relator units that do not belong to any particular model.</p>
-<p>&nbsp;</p>
+<p> </p>
 <p>To evaluate manually:</p>
 <pre>pip install semstr <br/>python -m semstr.evaluate <code>[predicated_file_or_dir] [reference_file_or_dir]</code></pre>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 <hr/>
 <ol>
     <li id="fn1">
-        <p><a class="uri" href="http://spacy.io">http://spacy.io</a>. We use spaCy 2.0.12 with the&nbsp;en_core_web_lg,&nbsp;fr_core_news_md
-            and&nbsp;de_core_news_sm models. <a class="footnote-back" href="#fnref1">↩</a></p>
+        <p><a class="uri" href="http://spacy.io">http://spacy.io</a>. We use spaCy 2.0.12 with the en_core_web_lg, fr_core_news_md
+            and de_core_news_sm models. <a class="footnote-back" href="#fnref1">↩</a></p>
     </li>
     <li><a href="http://ufal.mff.cuni.cz/udpipe">http://ufal.mff.cuni.cz/udpipe</a>. We use UDPipe 1.2 with the <a
             href="http://ufal.mff.cuni.cz/~zeman/soubory/ud-2.2-conll18-baseline-models.tar.xz">CoNLL 2018 baseline
-        models</a>&nbsp;traind on English-EWT, French-GSD and German-GSD.&nbsp;<a class="footnote-back"
+        models</a> traind on English-EWT, French-GSD and German-GSD. <a class="footnote-back"
                                                                                   href="#fnref2">↩</a></li>
     <li id="fn2">
         <p><a class="uri" href="http://fasttext.cc">http://fasttext.cc</a> <a class="footnote-back" href="#fnref3">↩</a>
